@@ -1,0 +1,113 @@
+{
+    "pedals": [
+        {
+            "id": "01",
+            "name": "Boss DS-1",
+            "type": "Distortion",
+            "color": "yellow",
+            "knob": [
+                {"name": "Tone", "type": "number", "min": 0, "max": 100},
+                {"name": "Level", "type": "number", "min": 0, "max": 100},
+                {"name": "Distortion", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "02",
+            "name": "Ibanez Tube Screamer",
+            "type": "Overdrive",
+            "color": "green",
+            "knob": [
+                {"name": "Drive", "type": "number", "min": 0, "max": 100},
+                {"name": "Tone", "type": "number", "min": 0, "max": 100},
+                {"name": "Level", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "03",
+            "name": "Boss CE-1",
+            "type": "Modulation",
+            "color": "blue",
+            "knob": [
+                {"name": "Rate", "type": "number", "min": 0, "max": 100},
+                {"name": "Depth", "type": "number", "min": 0, "max": 100},
+                {"name": "Mix", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "04",
+            "name": "Boss DD-3",
+            "type": "Delay",
+            "color": "blue",
+            "knob": [
+                {"name": "Time", "type": "number", "min": 0, "max": 100},
+                {"name": "Feedback", "type": "number", "min": 0, "max": 100},
+                {"name": "Level", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "05",
+            "name": "Boss MT-2",
+            "type": "Distortion",
+            "color": "purple",
+            "knob": [
+                {"name": "Low", "type": "number", "min": 0, "max": 100},
+                {"name": "Mid", "type": "number", "min": 0, "max": 100},
+                {"name": "High", "type": "number", "min": 0, "max": 100},
+                {"name": "Distortion", "type": "number", "min": 0, "max": 100},
+                {"name": "Level", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "06",
+            "name": "Boss SD-1",
+            "type": "Overdrive",
+            "color": "orange",
+            "knob": [
+                {"name": "Tone", "type": "number", "min": 0, "max": 100},
+                {"name": "Level", "type": "number", "min": 0, "max": 100},
+                {"name": "Overdrive", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "07",
+            "name": "Boss RV-3",
+            "type": "Reverb",
+            "color": "blue",
+            "knob": [
+                {"name": "Room", "type": "number", "min": 0, "max": 100},
+                {"name": "Hall", "type": "number", "min": 0, "max": 100},
+                {"name": "Spring", "type": "number", "min": 0, "max": 100},
+                {"name": "Level", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "08",
+            "name": "MXR Phase 90",
+            "type": "Modulation",
+            "color": "orange",
+            "knob": [
+                {"name": "Speed", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "09",
+            "name": "Cry Baby",
+            "type": "Wah",
+            "color": "red",
+            "knob": [
+                {"name": "Pedal", "type": "number", "min": 0, "max": 100}
+            ]
+        },
+        {
+            "id": "10",
+            "name": "Boss FZ-2",
+            "type": "Fuzz",
+            "color": "yellow",
+            "knob": [
+                {"name": "Tone", "type": "number", "min": 0, "max": 100},
+                {"name": "Level", "type": "number", "min": 0, "max": 100},
+                {"name": "Fuzz", "type": "number", "min": 0, "max": 100}
+            ]
+        }
+    ]
+}

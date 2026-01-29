@@ -1,0 +1,166 @@
+{
+    "Presets": [
+        {
+            "id": "001",
+            "name": "Rock Distortion",
+            "pedals": [
+                {
+                    "pedal_id": "05",
+                    "settings": {
+                        "Level": 70,
+                        "Tone": 60,
+                        "Distortion": 80
+                    }
+                },
+                {
+                    "pedal_id": "06",
+                    "settings": {
+                        "Level": 65,
+                        "Tone": 55,
+                        "Drive": 75
+                    }
+                }
+            ]
+        },
+        {
+            "id": "002",
+            "name": "Clean Delay",
+            "pedals": [
+                {
+                    "pedal_id": "02",
+                    "settings": {
+                        "Level": 50,
+                        "Tone": 70,
+                        "Drive": 30
+                    }
+                },
+                {
+                    "pedal_id": "04",
+                    "settings": {
+                        "Level": 60,
+                        "Time": 40,
+                        "Feedback": 50
+                    }
+                }
+            ]
+        },
+        {
+            "id": "003",
+            "name": "Modulated Chorus",
+            "pedals": [
+                {
+                    "pedal_id": "03",
+                    "settings": {
+                        "Mix": 65,
+                        "Depth": 70,
+                        "Rate": 55
+                    }
+                }
+            ]
+        },
+        {
+            "id": "004",
+            "name": "Heavy Metal",
+            "pedals": [
+                {
+                    "pedal_id": "05",
+                    "settings": {
+                        "Low": 80,
+                        "Mid": 70,
+                        "High": 75,
+                        "Distortion": 90,
+                        "Level": 85
+                    }
+                },
+                {
+                    "pedal_id": "01",
+                    "settings": {
+                        "Level": 80,
+                        "Tone": 65,
+                        "Distortion": 85
+                    }
+                }
+            ]
+        },
+        {
+            "id": "005",
+            "name": "Vintage Overdrive",
+            "pedals": [
+                {
+                    "pedal_id": "02",
+                    "settings": {
+                        "Drive": 60,
+                        "Tone": 75,
+                        "Level": 70
+                    }
+                }
+            ]
+        },
+        {
+            "id": "006",
+            "name": "Ambient Soundscape",
+            "pedals": [
+                {
+                    "pedal_id": "04",
+                    "settings": {
+                        "Level": 70,
+                        "Time": 80,
+                        "Feedback": 75
+                    }
+                },
+                {
+                    "pedal_id": "03",
+                    "settings": {
+                        "Mix": 60,
+                        "Depth": 65,
+                        "Rate": 50
+                    }
+                }
+            ]
+        },
+        {
+            "id": "007",
+            "name": "Blues Crunch",
+            "pedals": [
+                {
+                    "pedal_id": "02",
+                    "settings": {
+                        "Drive": 55,
+                        "Tone": 60,
+                        "Level": 65
+                    }
+                },
+                {
+                    "pedal_id": "01",
+                    "settings": {
+                        "Level": 60,
+                        "Tone": 55,
+                        "Distortion": 50
+                    }
+                }
+            ]
+        }, 
+        {
+            "id": "008",
+            "name": "Surf Rock",
+            "pedals": [
+                {
+                    "pedal_id": "03",
+                    "settings": {
+                        "Mix": 70,
+                        "Depth": 60,
+                        "Rate": 80
+                    }
+                },
+                {
+                    "pedal_id": "04",
+                    "settings": {
+                        "Level": 55,
+                        "Time": 45,
+                        "Feedback": 50
+                    }
+                }
+            ]
+        }
+    ]
+}

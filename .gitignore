@@ -1,0 +1,64 @@
+# --- General / OS ---
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+.vscode/
+.idea/
+
+# --- Node.js & React (Frontend/Backend) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnp*
+
+# ビルド出力 (ReactのビルドやNodeのトランスパイル先)
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# 環境変数 (絶対にコミットしないこと)
+.env
+.env.local
+.env.*.local
+
+# テストカバレッジ
+coverage/
+
+# --- JUCE / C++ ---
+# Projucerが生成するIDE用プロジェクトファイル群 (これらはProjucerから再生成可能)
+Builds/
+
+# Projucerの一時ファイル
+*.jucer.user
+
+# CMakeを使用している場合 (JUCE 6/7/8推奨)
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+
+# コンパイル済みオブジェクトファイルなど
+*.o
+*.obj
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+
+# --- JUCE Modules (重要: 管理方針による) ---
+# JUCEモジュールをGlobalパスで見ている、またはProjucer/CMakeで管理する場合
+# JuceLibraryCode/modules/
+# ただし、AppConfig.h はバージョン管理したい場合が多いので、
+# 以下の例外設定を使うことが一般的です：
+# JuceLibraryCode/*
+# !JuceLibraryCode/AppConfig.h
+# !JuceLibraryCode/JuceHeader.h
+
+# --- Monorepo Tooling (もし使用していれば) ---
+.turbo/
