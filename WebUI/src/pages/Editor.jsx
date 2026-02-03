@@ -44,6 +44,8 @@ const Editor = ({ setState }) => {
                 settings: presetPedal.settings,
                 boardId: `${pedalInfo.id}-${index}`
               };
+            } else {
+              console.warn(`Pedal with id ${presetPedal.pedal_id} not found in pedalsData`);
             }
             return null;
           }).filter(Boolean);
