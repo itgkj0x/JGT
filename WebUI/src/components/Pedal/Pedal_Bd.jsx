@@ -3,16 +3,21 @@ import { Text,Box,Flex } from '@chakra-ui/react';
 import { useDroppable } from '@dnd-kit/core';
 import Pedal from './Pedal.jsx';
 
-const Pedal_Bd = ({ preset,pedals,setDroppedPedals,setPedalEditOpen,isPedalEditOpen }) => {
+const Pedal_Bd = ({ preset,pedals,setDroppedPedals,setPedalEditOpen,isPedalEditOpen,savePreset }) => {
   const { setNodeRef, isOver } = useDroppable({
     id: 'effect-bd'
   });
 
 
   const handleRemovePedal = (id) => {
-    setDroppedPedals((prevPedals) => 
-      prevPedals.filter(p => p.id !== id)
-    );
+    setDroppedPedals((prevPedals) => {
+      const newPedals = prevPedals.filter(p => p.id !== id);
+      // ペダルが削除されたらプリセットを保存
+      if (savePreset) {
+        savePreset(newPedals);
+      }
+      return newPedals;
+    });
   };
 
   const handlePedal_Edit = (id) => {
