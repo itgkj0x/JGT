@@ -1,5 +1,5 @@
 // react imports
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import { Flex } from '@chakra-ui/react'
@@ -14,6 +14,9 @@ import Pedal from '../components/Pedal/Pedal.jsx'
 import pedalsData from '../db/pedals.json'
 import presetsData from '../db/presets.json'
 
+// API endpoint for saving presets
+const API_BASE_URL = 'http://localhost:3001';
+
 const Editor = ({ setState }) => {
   const [isPedalEditOpen, setPedalEditOpen] = useState(null);
 
@@ -22,6 +25,31 @@ const Editor = ({ setState }) => {
   const [droppedPedals, setDroppedPedals] = useState([]);
   const [activePedal, setActivePedal] = useState(null);
   const [presetData, setPresetData] = useState(null);
+
+  // プリセットを保存する関数
+  const savePreset = useCallback(async (pedalsToSave) => {
+    if (!presetData) return;
+    
+    try {
+      console.log('Saving preset:', presetData.id, 'with pedals:', pedalsToSave);
+      const response = await fetch(`${API_BASE_URL}/api/presets/${presetData.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pedals: pedalsToSave }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to save preset');
+      }
+      
+      const result = await response.json();
+      console.log('Preset saved successfully:', result);
+    } catch (error) {
+      console.error('Error saving preset:', error);
+    }
+  }, [presetData]);
 
   useEffect(() => {
     const preset = presetsData.Presets.find(p => p.id === id);
@@ -84,7 +112,10 @@ const Editor = ({ setState }) => {
         if (alreadyExists) {
           return prevPedals;
         }
-        return [...prevPedals, { ...pedalData, boardId: `${pedalData.id}-${Date.now()}` }];
+        const newPedals = [...prevPedals, { ...pedalData, boardId: `${pedalData.id}-${Date.now()}` }];
+        // ペダルが追加されたらプリセットを保存
+        savePreset(newPedals);
+        return newPedals;
       });
     }
   };
@@ -95,7 +126,14 @@ const Editor = ({ setState }) => {
       onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
     >
-      <Pedal_Bd preset={presetData} pedals={droppedPedals} setDroppedPedals={setDroppedPedals} setPedalEditOpen={setPedalEditOpen} isPedalEditOpen={isPedalEditOpen} />
+      <Pedal_Bd 
+        preset={presetData} 
+        pedals={droppedPedals} 
+        setDroppedPedals={setDroppedPedals} 
+        setPedalEditOpen={setPedalEditOpen} 
+        isPedalEditOpen={isPedalEditOpen}
+        savePreset={savePreset}
+      />
       <Flex w="90%" m="10px auto" justifyContent="center" >
         <Pedal_List pedals={pedals} />
         <Pedal_Edit pedals={pedals} id={isPedalEditOpen} onClose={() => setPedalEditOpen(null)}/>
