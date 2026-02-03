@@ -13,12 +13,8 @@
                     }
                 },
                 {
-                    "pedal_id": "06",
-                    "settings": {
-                        "Level": 65,
-                        "Tone": 55,
-                        "Drive": 75
-                    }
+                    "pedal_id": "04",
+                    "settings": {}
                 }
             ]
         },
@@ -139,7 +135,7 @@
                     }
                 }
             ]
-        }, 
+        },
         {
             "id": "008",
             "name": "Surf Rock",
