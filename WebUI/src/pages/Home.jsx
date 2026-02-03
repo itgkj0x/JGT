@@ -6,9 +6,6 @@ import Welcome from './Welcome'
 const Home = () => {
     return (
         <>
-        <Text>
-            Now Loading...
-        </Text>
         <Welcome />
         </>
         

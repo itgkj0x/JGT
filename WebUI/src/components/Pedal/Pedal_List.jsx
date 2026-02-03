@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box,Flex } from '@chakra-ui/react'
+import { Box,Flex, Collapsible, Stack } from '@chakra-ui/react'
+import { LuChevronRight } from "react-icons/lu";
 import { useDraggable } from '@dnd-kit/core'
 import Pedal from './Pedal.jsx'
 
@@ -43,21 +44,36 @@ const Pedal_List = ({ pedals }) => {
   const pedalOrder = ["Distortion", "Overdrive", "Modulation", "Delay", "Reverb", "Wah"];
 
   return (
-    <Flex w="60%" p="10px" direction="column">
+    <Flex w="40%" px="20px" m="10px" borderRadius="10px" bg="gray.800" direction="column">
       {pedalOrder.map((type) => {
         const filteredPedals = pedals.filter(pedal => pedal.type === type);
         
         // そのタイプのペダルがない場合はスキップ
         if (filteredPedals.length === 0) return null;
 
-        return (
-          <Box key={type} bg="gray.800" borderRadius="10px"  p="10px" m="10px" >
-              {type}
-            <Flex >
+  return (
+      <Collapsible.Root defaultClosed  key={type}  >
+        <Collapsible.Trigger
+          paddingY="3"
+          display="flex"
+          gap="2"
+          alignItems="center"
+        >
+          <Collapsible.Indicator
+            transition="transform 0.2s"
+            _open={{ transform: "rotate(90deg)" }}
+          >
+            <LuChevronRight />
+          </Collapsible.Indicator>
+          {type}
+        </Collapsible.Trigger>
+        <Collapsible.Content>
+          <Flex p="4" borderRadius="md" bg="gray.700">
               <RowPedals pedals={filteredPedals} />
-            </Flex>
-          </Box>
-        );
+          </Flex>
+        </Collapsible.Content>
+      </Collapsible.Root>
+  );
       })}
     </Flex>
   )

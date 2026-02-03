@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card,Button,Flex} from '@chakra-ui/react'
 import presetData from '../db/presets.json'
 
-const Preset = () => {
+const Preset = ({ setState }) => {
 
     const PresetBox = ({id,label}) => (
         <Card.Root w="20%" m="10px">
@@ -15,7 +15,7 @@ const Preset = () => {
                 <Link to={`/edit/${id}`}>
                 <Button variant="outline">Edit</Button>
                 </Link>
-                <Button>Use</Button>
+                <Button onClick={() => setState(prev => ({ ...prev, nowpreset: id }))}>Use</Button>
             </Card.Footer>
         </Card.Root>
     )

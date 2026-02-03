@@ -1,16 +1,30 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
-import { Group,Box,Button,ButtonGroup,Text } from '@chakra-ui/react'
+import { Group,Box,Button,Text,useDisclosure } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { IoSyncCircle,IoPlayCircleSharp,IoVolumeMute } from "react-icons/io5";
+import { GiGuitarHead } from "react-icons/gi";
+import Tuner from './Tuner';
 
 
-const Header = () => {
+const Header = ({ State, setState }) => {
 
+    const handleMute = () => {
+        setState(prev => ({ ...prev, nowplay: false }))
+    }
 
-    const [loading, setLoading] = useState(false);
-    const [nowplay, setNowPlay] = useState(false);
-    const [nowpreset, setNowPreset] = useState("Preset 1");
+    const handlePlay = () => {
+        setState(prev => ({ ...prev, nowplay: true }))
+    }
+
+    const { open, onOpen, onClose } = useDisclosure()
+
+    const handleReconnect = () => {
+        // Reconnection logic here
+    }
+
+    useEffect(() => {
+        console.log("Header State:", State);
+    }, [State]);
 
     return (
     <>
@@ -29,7 +43,7 @@ const Header = () => {
                     Edit
                 </Button>
             </Link>
-            <Link to={`/settings`}>
+            <Link to={`/setting`}>
                 <Button colorPalette="teal" variant="ghost">
                     Settings
                 </Button>
@@ -37,33 +51,27 @@ const Header = () => {
         </Group>
         <Group>
             <Group> 
-                {nowplay ?
-                <ButtonGroup>
-                <Button colorPalette="teal" variant="outline" onClick={() => setNowPlay(true)}>
-                    <IoPlayCircleSharp /> Play
-                </Button>
-                <Button colorPalette="teal" variant="solid" onClick={() => setNowPlay(false)}>
+                {State.nowplay ?
+                <Button colorPalette="teal" variant="outline" onClick={handleMute}>
                     <IoVolumeMute /> Mute
                 </Button>
-                </ButtonGroup>
                 : 
-                <ButtonGroup>
-                <Button colorPalette="teal" variant="solid" onClick={() => setNowPlay(true)}>
+                <Button colorPalette="teal" variant="solid" onClick={handlePlay}>
                     <IoPlayCircleSharp /> Play
                 </Button>
-                <Button colorPalette="teal" variant="outline"  onClick={() => setNowPlay(false)}>
-                    <IoVolumeMute /> Mute
-                </Button>
-                </ButtonGroup>
                 }
-                <Button colorPalette="teal" variant="outline">
+                <Button colorPalette="teal" variant="outline" onClick={onOpen}>
+                    <GiGuitarHead /> Tuner
+                </Button>
+                <Tuner isOpen={open} onClose={onClose} />
+                <Button colorPalette="teal" variant="surface" >
                     <IoSyncCircle /> 再接続
                 </Button>
             </Group>
             <Text mx="3">
-                {loading ? 
-                `Loading ${nowpreset}...` :
-                `${nowpreset} ${nowplay ? '| 🎶' : '| 🔇'}`
+                {State.loading ? 
+                `Loading ${State.nowpreset}...` :
+                `${State.nowpreset} ${State.nowplay ? '| 🎶' : '| 🔇'}`
                 }
             </Text>
         </Group>

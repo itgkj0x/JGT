@@ -1,15 +1,12 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect} from 'react';
 import { Text,Box,Flex } from '@chakra-ui/react';
 import { useDroppable } from '@dnd-kit/core';
 import Pedal from './Pedal.jsx';
-import Pedal_Edit from './Pedal_Edit.jsx';
 
-const Pedal_Bd = ({ preset,pedals,setDroppedPedals }) => {
+const Pedal_Bd = ({ preset,pedals,setDroppedPedals,setPedalEditOpen,isPedalEditOpen }) => {
   const { setNodeRef, isOver } = useDroppable({
     id: 'effect-bd'
   });
-
-  
 
 
   const handleRemovePedal = (id) => {
@@ -18,28 +15,28 @@ const Pedal_Bd = ({ preset,pedals,setDroppedPedals }) => {
     );
   };
 
-  const [isOpen, setOpen] = useState(null);
-
   const handlePedal_Edit = (id) => {
-    setOpen(id);
+    setPedalEditOpen(id);
   }
 
   useEffect(() => {
-    console.log("Editing pedal with ID:", isOpen);
-  }, [isOpen]);
+    console.log("Editing pedal with ID:", isPedalEditOpen);
+  }, [isPedalEditOpen]);
 
   return (
     <>
     <Box
       ref={setNodeRef}
       className={`effect-bd ${isOver ? 'over' : ''}`}
-      border={isOver ? '2px solid blue' : '2px dashed gray'}
+      border={isOver ? '2px solid blue' : '2px solid gray'}
       p="20px"
+      m="10px auto"
+      w="90%"
       minH="300px"
       bg="gray.800"
       borderRadius="10px"
     >
-      <Text>{preset ? `${preset.id}-${preset.name}` : "No Preset Selected"}</Text>
+      <Text mb="10px">{preset ? `${preset.id}-${preset.name}` : "New Pedals"}</Text>
       
       <Flex wrap="wrap" gap="10px">
         {pedals.length === 0 ? (
@@ -65,7 +62,6 @@ const Pedal_Bd = ({ preset,pedals,setDroppedPedals }) => {
       
       {isOver && <p style={{ color: 'blue', marginTop: '10px' }}>ここにドロップ</p>}
     </Box>
-    <Pedal_Edit pedals={pedals} id={isOpen} onClose={() => setOpen(null)} />
     </>
   );
 };

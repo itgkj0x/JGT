@@ -5,15 +5,12 @@ const Pedal_Edit = ({ pedals,id }) => {
   return (
     <>
     <Box
-      position="absolute"
-      right="10px"
-      w="20%"
+      w="60%"
       h="40vh"
       bg="gray.800"
       p="10px"
       m="10px"
       borderRadius="10px"
-      boxShadow={1}
     >
       
     {id == null ? 

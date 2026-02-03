@@ -1,37 +1,36 @@
+// react imports
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
+import { Flex } from '@chakra-ui/react'
+
+//components
 import Pedal_Bd from '../components/Pedal/Pedal_Bd.jsx'
 import Pedal_List from '../components/Pedal/Pedal_List.jsx'
-import React, { useState, useEffect } from 'react'
-import { useParams,Navigate } from 'react-router-dom'
-import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
-import pedalsData from '../db/pedals.json'
+import Pedal_Edit from '../components/Pedal/Pedal_Edit.jsx'
 import Pedal from '../components/Pedal/Pedal.jsx'
+
+// DB
+import pedalsData from '../db/pedals.json'
 import presetsData from '../db/presets.json'
 
-const Editor = () => {
+const Editor = ({ setState }) => {
+  const [isPedalEditOpen, setPedalEditOpen] = useState(null);
 
-  const { id: urlId } = useParams();
-  const [oldid, setOldid] = useState(urlId);
-  const effectiveId = urlId || oldid;
-
-  if(!oldid){
-    console.log("Using old ID:", oldid);
-    return <Navigate to="/preset" replace={true} />
-  };
+  const { id } = useParams();
 
   const [droppedPedals, setDroppedPedals] = useState([]);
   const [activePedal, setActivePedal] = useState(null);
   const [presetData, setPresetData] = useState(null);
 
   useEffect(() => {
-  if (effectiveId) {
-    console.log("Editing item with ID:", effectiveId);
-    setOldid(effectiveId);
-    const preset = presetsData.Presets.find(p => p.id === effectiveId);
+    const preset = presetsData.Presets.find(p => p.id === id);
       if (preset) {
         console.log("Preset found:", preset);
         setPresetData(preset);
-  }}
-}, [effectiveId]);
+        setState(prev => ({ ...prev, nowpreset: preset.id }));
+      }
+  }, [id]);
 
   // pedals.jsonから取得
   const pedals = pedalsData.pedals.map((pedal) => ({
@@ -73,9 +72,11 @@ const Editor = () => {
       onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
     >
-      <Pedal_Bd preset={presetData} pedals={droppedPedals} setDroppedPedals={setDroppedPedals} />
-      <Pedal_List pedals={pedals} />
-      
+      <Pedal_Bd preset={presetData} pedals={droppedPedals} setDroppedPedals={setDroppedPedals} setPedalEditOpen={setPedalEditOpen} isPedalEditOpen={isPedalEditOpen} />
+      <Flex w="90%" m="10px auto" justifyContent="center" >
+        <Pedal_List pedals={pedals} />
+        <Pedal_Edit pedals={pedals} id={isPedalEditOpen} onClose={() => setPedalEditOpen(null)}/>
+      </Flex>
       <DragOverlay>
         {activePedal ? (
           <Pedal
