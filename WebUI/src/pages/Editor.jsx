@@ -29,6 +29,29 @@ const Editor = ({ setState }) => {
         console.log("Preset found:", preset);
         setPresetData(preset);
         setState(prev => ({ ...prev, nowpreset: preset.id }));
+        
+        // Load pedals from preset
+        if (preset.pedals && preset.pedals.length > 0) {
+          const loadedPedals = preset.pedals.map((presetPedal, index) => {
+            const pedalInfo = pedalsData.pedals.find(p => p.id === presetPedal.pedal_id);
+            if (pedalInfo) {
+              return {
+                id: pedalInfo.id,
+                name: pedalInfo.name,
+                type: pedalInfo.type,
+                color: pedalInfo.color,
+                knob: pedalInfo.knob,
+                settings: presetPedal.settings,
+                boardId: `${pedalInfo.id}-${index}`
+              };
+            } else {
+              console.warn(`Pedal with id ${presetPedal.pedal_id} not found in pedalsData`);
+            }
+            return null;
+          }).filter(Boolean);
+          
+          setDroppedPedals(loadedPedals);
+        }
       }
   }, [id]);
 
